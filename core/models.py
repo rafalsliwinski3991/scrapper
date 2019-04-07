@@ -27,7 +27,6 @@ class ExchangeRate(models.Model):
             self.rate
         )
 
-
     class Meta:
         unique_together = ('base_currency', 'target_currency', 'date')
         verbose_name = 'ExchangeRate'

@@ -16,8 +16,10 @@ class Command(BaseCommand):
         uls = soup.find_all('ul', {'class': 'zebraList'})
         currencies_rss_list = uls[1]
         currencies_rss_links = [a.get('href') for a in currencies_rss_list.find_all('a')]
+        all_curriencies_count = len(currencies_rss_links)
 
         for link in currencies_rss_links:
+            print('{}/{}'.format(currencies_rss_links.index(link) + 1, all_curriencies_count), end="\r")
             url = '{}{}'.format(ecb_domain, link)
             currency_content = requests.get(url).text
             currency_soup = BeautifulSoup(currency_content, features='html.parser')
@@ -49,3 +51,4 @@ class Command(BaseCommand):
                     target_currency=target_currency,
                     date=rate_date,
                 )
+        print('Script runs succesfull')
