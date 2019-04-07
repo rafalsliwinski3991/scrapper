@@ -10,3 +10,4 @@ class CurrencyAdmin(admin.ModelAdmin):
 @admin.register(ExchangeRate)
 class ExchangeRateAdmin(admin.ModelAdmin):
     list_display = ('id', 'base_currency', 'target_currency', 'rate', 'date')
+    list_filter = ('target_currency',)
